@@ -1,0 +1,11 @@
+# If using a dedicated output directory:
+dist/
+build/
+node_modules/
+.vscode/
+.idea/
+.env
+.env.local
+.env.*.local
+*.tsbuildinfo
+note.txt
