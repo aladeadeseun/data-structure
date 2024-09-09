@@ -111,6 +111,39 @@ export default class BinaryTree<T>{
     return newNodesOnTheSameLevel
   }//end private method
 
+  private diagonalTravesalHelper(diagonalNodes:BinaryTreeNode<T>[], output:T[][]): BinaryTreeNode<T>[]{
+    //
+    const nextDiagonalNode: BinaryTreeNode<T>[] = []
+    const diagonalData: T[] = []
+    //loop through the diagonal node
+    for(const node of diagonalNodes){
+      //add the data
+      diagonalData.push(node.data)
+      //if current node as a left child, push to the next diagonal node queue
+      if(node.left){
+        nextDiagonalNode.push(node.left)
+      }
+      //if has next right child
+      let rightNode: BinaryTreeNode<T> | null = node.right
+
+      //if right node is not null
+      while(rightNode){
+        //add the data
+        diagonalData.push(rightNode.data)
+        //if the node as a left child
+        if(rightNode.left){
+          //push to queue
+          nextDiagonalNode.push(rightNode.left)
+        }//end if
+        rightNode = rightNode.right
+      }//end while
+    }//end for loop
+    
+    output.push(diagonalData)
+
+    return nextDiagonalNode
+  }//end function
+
   /**
    * 
    * Method to insert new binary tree node to the binary tree.
@@ -426,39 +459,6 @@ export default class BinaryTree<T>{
 
     return output;
   }//end method
-
-  private diagonalTravesalHelper(diagonalNodes:BinaryTreeNode<T>[], output:T[][]): BinaryTreeNode<T>[]{
-    //
-    const nextDiagonalNode: BinaryTreeNode<T>[] = []
-    const diagonalData: T[] = []
-    //loop through the diagonal node
-    for(const node of diagonalNodes){
-      //add the data
-      diagonalData.push(node.data)
-      //if current node as a left child, push to the next diagonal node queue
-      if(node.left){
-        nextDiagonalNode.push(node.left)
-      }
-      //if has next right child
-      let rightNode: BinaryTreeNode<T> | null = node.right
-
-      //if right node is not null
-      while(rightNode){
-        //add the data
-        diagonalData.push(rightNode.data)
-        //if the node as a left child
-        if(rightNode.left){
-          //push to queue
-          nextDiagonalNode.push(rightNode.left)
-        }//end if
-        rightNode = rightNode.right
-      }//end while
-    }//end for loop
-    
-    output.push(diagonalData)
-
-    return nextDiagonalNode
-  }//end function
 
   /**
    * Diagonal traversal of a binary tree is a technique where nodes are grouped and visited based on their diagonal levels. 
