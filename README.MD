@@ -113,4 +113,4 @@ cd data-structure
 yarn run dev
 ```
 
-Feel free to customize the repository URL, your username, or license details as needed.
+Feel free to customize the repository.
